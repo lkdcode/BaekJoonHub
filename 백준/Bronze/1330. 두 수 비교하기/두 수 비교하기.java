@@ -1,23 +1,16 @@
-import java.util.*;
+import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
-        int a,b;
-        Scanner scan = new Scanner(System.in);
+        Scanner scan= new Scanner(System.in);
+        int a = scan.nextInt();
+        int b = scan.nextInt();
         
-        a = scan.nextInt();
-        b = scan.nextInt();
-        
-        if (a>b) {
-            System.out.print(">");
-        }
-        else if (a<b)
-        {
-            System.out.print("<");
+        if(a>b){
+            System.out.printf(">");
+        }else if (a<b){
+            System.out.printf("<");
         }
         else
-        {
-            System.out.print("==");
-        }
-            
+            System.out.printf("==");
     }
 }
