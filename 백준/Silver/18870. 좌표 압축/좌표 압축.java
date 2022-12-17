@@ -31,7 +31,7 @@ public class Main {
         SIZE = Integer.parseInt(bf.readLine());
 
         NUMBERS = new int[SIZE];
-        NUMBERS_COPY = new int[SIZE];
+        NUMBERS_COPY = NUMBERS.clone();
     }
 
     private static void makeNumbers(String[] input) {
