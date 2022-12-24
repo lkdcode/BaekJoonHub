@@ -1,25 +1,28 @@
 class Solution {
     public int solution(int a, int b) {
-      
-        int num = b / gcd(a, b);
+        int answer = 1;
+        //두 수의 최대공약수 
+        int gcd = gcd(a,b);
+        int gb = b / gcd;
 
-        for (int i = 0; i < b; i++) {
-            if (num % 2 == 0) {
-                num /= 2;
-            }
-            if (num % 5 == 0) {
-                num /= 5;
+         for (int i = 2; i <= gb; i++) {
+            while (gb % i == 0) {
+                if (i == 2 || i == 5) {
+                    gb /= i;
+                    //continue;
+                } else {
+                    break;
+                }
             }
         }
 
-        int answer = 2;
-        if (num == 1) {
+        answer = 2;
+        if (gb == 1) {
             answer = 1;
         }
         return answer;
     }
-    
-    
+
     static int gcd(int a, int b){
         if(a < b){
             int temp = a;
@@ -33,8 +36,4 @@ class Solution {
         }
         return a;
     }
-    
- 
-    
-    
 }
