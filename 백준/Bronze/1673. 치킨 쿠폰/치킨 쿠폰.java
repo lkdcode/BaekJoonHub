@@ -5,25 +5,35 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         while (true) {
             String input = br.readLine();
+
             if (input == null) {
                 break;
             }
-            String[] inputs = input.split(" ");
-            int n = Integer.parseInt(inputs[0]);
-            int k = Integer.parseInt(inputs[1]);
-            System.out.println(solve(n, 0, k));
+            String[] inputSplit = input.split(" ");
+            int chicken = Integer.parseInt(inputSplit[0]);
+            int coupon = Integer.parseInt(inputSplit[1]);
+            int order = 0;
+
+            System.out.println(chicken + calculator(chicken, coupon, order));
 
         }
     }
 
-    private static int solve(int coupon, int ordered, int k) {
-        if (coupon < k) {
-            return ordered + coupon;
+    private static int calculator(int chicken, int coupon, int order) {
+
+        if (chicken < coupon) {
+            return order;
         }
-        return solve((coupon / k) + (coupon % k), ordered + (coupon - coupon % k), k);
+        order += chicken / coupon;
+        chicken = (chicken / coupon) + (chicken % coupon);
+
+        return calculator((chicken), (coupon), (order));
     }
+
 }
