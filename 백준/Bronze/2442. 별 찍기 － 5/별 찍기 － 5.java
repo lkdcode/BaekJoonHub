@@ -7,16 +7,16 @@ public class Main {
     public static void main(String[] args) {
         int input = scanner.nextInt();
 
-        int k = 0;
+        int blankLoop = 1;
 
         for (int i = 1; i <= input; i++) {
             int loop = 2 * i - 1;
 
-            for (int j = k; j < input - 1; j++) {
+            for (int j = blankLoop; j < input; j++) {
                 System.out.print(" ");
             }
 
-            k++;
+            blankLoop++;
 
             for (int j = loop; j > 0; j--) {
                 System.out.print("*");
