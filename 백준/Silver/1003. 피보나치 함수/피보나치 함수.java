@@ -9,14 +9,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int size = Integer.parseInt(br.readLine());
         makeFibonacci();
-        
+
         for (int i = 0; i < size; i++) {
             int number = Integer.parseInt(br.readLine());
 
             if (number == 0) {
                 System.out.println("1 0");
                 continue;
-            } else if (number == 1) {
+            }
+            if (number == 1) {
                 System.out.println("0 1");
                 continue;
             }
