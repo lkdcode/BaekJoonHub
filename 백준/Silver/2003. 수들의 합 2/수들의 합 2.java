@@ -27,8 +27,6 @@ public class Main {
 
             for (int j = i + 1; j < size; j++) {
                 if (sum == findNumber) {
-                    result++;
-                    sum = -1;
                     break;
                 } else if (sum > findNumber) {
                     break;
