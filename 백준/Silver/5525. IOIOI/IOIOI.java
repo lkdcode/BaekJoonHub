@@ -15,29 +15,23 @@ public class Main {
 
         int result = 0;
 
-        StringBuilder findWord = new StringBuilder();
-        findWord.append("IOI");
+        StringBuilder findWord = new StringBuilder("IOI");
 
         for (int i = 1; i < findSize; i++) {
             findWord.append(ADD_WORD);
         }
 
-        // 사이즈만큼 잘라서 추가해서 비교하기
-        // word를 0부터 시작해서
-        // findWord 사이즈만큼 substring으로 만들고
-        // Queue에 담아서 맞는지 체크하기
-
-        // startIndex 이상, endIndex 미만
         int endIndex = findWord.length();
 
-
         Queue<String> checkList = new LinkedList<>();
-        for (int i = 0; i < word.length() - findWord.length() + 1; i++) {
+        for (int i = 0; i < wordSize - findWord.length() + 1; i++) {
             checkList.offer(word.substring(i, endIndex++));
         }
 
         while (!checkList.isEmpty()) {
-            if (checkList.poll().equals(findWord.toString())) result++;
+            String check = checkList.poll();
+            if (check.charAt(0) == 'O') continue;
+            if (check.equals(findWord.toString())) result++;
         }
 
         System.out.println(result);
