@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 import static java.lang.System.*;
@@ -32,7 +30,7 @@ public class Main {
         while (startIndex <= endIndex) {
             long midIndex = (startIndex + endIndex) / 2;
 
-            if (isPossible(size, midIndex, counter, memberSize)) {
+            if (isPossible(midIndex, counter, memberSize)) {
                 result = midIndex;
                 endIndex = midIndex - 1;
             } else {
@@ -44,9 +42,9 @@ public class Main {
         out.println(result);
     }
 
-    private static boolean isPossible(long size, long midIndex, long[] counter, long memberSize) {
-        for (int i = 0; i < size; i++) {
-            memberSize -= midIndex / counter[i];
+    private static boolean isPossible(long midIndex, long[] counter, long memberSize) {
+        for (long minute : counter) {
+            memberSize -= midIndex / minute;
             if (memberSize <= 0) return true;
         }
 
