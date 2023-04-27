@@ -1,0 +1,16 @@
+-- 코드를 입력하세요
+SELECT 
+    NAME,
+    COUNT(NAME) AS COUNT
+FROM ANIMAL_INS
+GROUP BY NAME
+HAVING COUNT > 1
+ORDER BY NAME
+;
+
+-- 1. ANIMAL_INS 테이블로부터
+-- 2. NAME 컬럼 데이터를 가져오고
+-- 3. NAME 컬럼 데이터를 카운트하고 그 컬럼명을 COUNT로 한다
+-- 4. NAME을 그룹으로 묶고
+-- 5. HAVING COUNT 가 1초과인 값을 필터링한다.
+-- 6. NAME 을 기준으로 오름차순 정렬한다.
