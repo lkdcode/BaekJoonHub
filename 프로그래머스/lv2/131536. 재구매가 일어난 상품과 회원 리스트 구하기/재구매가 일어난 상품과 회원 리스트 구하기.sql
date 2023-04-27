@@ -1,0 +1,15 @@
+-- 코드를 입력하세요
+SELECT
+    USER_ID,
+    PRODUCT_ID
+FROM ONLINE_SALE
+GROUP BY USER_ID, PRODUCT_ID
+HAVING COUNT(USER_ID) >= 2
+ORDER BY 1, 2 DESC
+;
+
+# ONLINE_SALE_ID : 상품 판매 아디
+# USER_ID : 회원 아디
+# PRODUCT_ID : 상품 아디
+# SALES_AMOUNT : 판매량
+# SALES_DATE : 판매일
