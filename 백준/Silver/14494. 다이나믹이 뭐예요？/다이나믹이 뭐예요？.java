@@ -5,40 +5,53 @@ import java.util.StringTokenizer;
 
 public class Main {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static long[][] DP;
+    private static int ROW;
+    private static int COLUMN;
+
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
+    private static final int DIVISION_NUMBER = 1000000007;
 
     public static void main(String[] args) throws IOException {
+        solution();
+    }
 
+    private static void inputSize() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        ROW = Integer.parseInt(st.nextToken());
+        COLUMN = Integer.parseInt(st.nextToken());
+    }
 
+    private static void solution() throws IOException {
+        inputSize();
+        makeDP();
+        printResult();
+    }
 
-        long[][] map = new long[n + 1][m + 1];
+    private static void makeDP() {
+        DP = new long[ROW + ONE][COLUMN + ONE];
 
+        DP[ZERO][ZERO] = ZERO;
 
-        map[0][0] = 0;
-
-        for (int i = 0; i <= n; i++) {
-            map[i][0] = 1;
+        for (int i = ZERO; i <= ROW; i++) {
+            DP[i][ZERO] = ONE;
         }
 
-        for (int i = 0; i <= m; i++) {
-            map[0][i] = 1;
+        for (int i = ZERO; i <= COLUMN; i++) {
+            DP[ZERO][i] = ONE;
         }
 
-
-        for (int i = 1; i < map.length; i++) {
-            for (int j = 1; j < map[i].length; j++) {
-                map[i][j] = (map[i - 1][j] + map[i][j - 1] + map[i - 1][j - 1]) % 1000000007;
+        for (int i = ONE; i < DP.length; i++) {
+            for (int j = ONE; j < DP[i].length; j++) {
+                DP[i][j] = (DP[i - ONE][j] + DP[i][j - ONE] + DP[i - ONE][j - ONE]) % DIVISION_NUMBER;
             }
         }
+    }
 
-
-
-        System.out.println(map[n-1][m-1]);
-
-
+    private static void printResult() {
+        System.out.println(DP[ROW - ONE][COLUMN - ONE]);
     }
 
 }

@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 22848 KB, 시간: 160 ms
+메모리: 22076 KB, 시간: 148 ms
 
 ### 분류
 
@@ -16,7 +16,7 @@
 
 <p>예를 들어서, 5번째 피보나치 수열을 구하는 F(5)의 동작 과정을 살펴볼게요.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="height:132px; width:184px"></p>
+<p style="text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14494/1.png" style="height:132px; width:184px"></p>
 
 <p>같은 함수가 불필요하게 많이 호출되는 것을 볼 수 있죠? F(2)와 F(3)을 미리 구해놓고 F(4)를 구할 땐 미리 구해둔 F(2)와 F(3)의 값을 이용하면 불필요한 호출을 줄일 수 있어요. 조금 엄밀하게 이야기 해볼게요. 수학적으로 피보나치 수열은 F(n) = F(n-1) + F(n-2)로 정의할 수 있죠? 이 식을 세우는 과정을 점화식을 세운다고 해요. 문제의 조건에 맞는 수식을 만들고 그 수식을 그대로 코드에 옮기면 아주 쉽게 다이나믹을 구현할 수 있어요.</p>
 
