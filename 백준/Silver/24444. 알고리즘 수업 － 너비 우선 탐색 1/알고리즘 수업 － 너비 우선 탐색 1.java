@@ -7,7 +7,8 @@ public class Main {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static boolean[] visited;
     private static PriorityQueue<Integer>[] nodeList;
-    private static int[] result;
+    private static int[] resultArr;
+    private static StringBuilder result;
     private static int resultIndex = 1;
 
     public static void main(String[] args) throws IOException {
@@ -19,7 +20,7 @@ public class Main {
 
         nodeList = new PriorityQueue[nodeSize + 1];
         visited = new boolean[nodeSize + 1];
-        result = new int[nodeSize + 1];
+        resultArr = new int[nodeSize + 1];
 
 
         // O(nodeSize)
@@ -40,9 +41,12 @@ public class Main {
         BFS(startIndex);
 
         // O(nodeSize)
+        result = new StringBuilder();
         for (int i = 1; i <= nodeSize; i++) {
-            System.out.println(result[i]);
+            result.append(resultArr[i])
+                    .append(System.lineSeparator());
         }
+        System.out.println(result.toString());
     }
 
     private static void BFS(int startIndex) {
@@ -56,15 +60,11 @@ public class Main {
             if (visited[index]) continue;
 
             visited[index] = true;
-            result[index] = resultIndex++;
+            resultArr[index] = resultIndex++;
 
             while (!nodeList[index].isEmpty()) {
                 queue.offer(nodeList[index].poll());
             }
-
-//            for (int i = 0; i < nodeList[index].size(); i++) {
-//                queue.offer(nodeList[index].poll());
-//            }
 
         }
     }
