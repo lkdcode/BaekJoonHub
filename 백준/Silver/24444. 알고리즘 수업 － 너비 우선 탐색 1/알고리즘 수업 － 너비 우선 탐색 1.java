@@ -5,68 +5,67 @@ import java.util.*;
 
 public class Main {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-    private static boolean[] BFSVisited;
+    private static boolean[] visited;
+    private static PriorityQueue<Integer>[] nodeList;
     private static int[] result;
-    private static List<Integer>[] list;
-    private static int node, edge;
-    private static int count = 1;
+    private static int resultIndex = 1;
 
     public static void main(String[] args) throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        node = Integer.parseInt(st.nextToken());
-        edge = Integer.parseInt(st.nextToken());
-
+        int nodeSize = Integer.parseInt(st.nextToken());
+        int edgeSize = Integer.parseInt(st.nextToken());
         int startIndex = Integer.parseInt(st.nextToken());
 
-        BFSVisited = new boolean[node + 1];
-        result = new int[node + 1];
+        nodeList = new PriorityQueue[nodeSize + 1];
+        visited = new boolean[nodeSize + 1];
+        result = new int[nodeSize + 1];
 
-        list = new ArrayList[node + 1];
 
-        for (int i = 0; i < list.length; i++) {
-            list[i] = new ArrayList<>();
+        // O(nodeSize)
+        for (int i = 0; i <= nodeSize; i++) {
+            nodeList[i] = new PriorityQueue<>();
         }
 
-
-        for (int i = 0; i < edge; i++) {
+        // O(edgeSize)
+        for (int i = 0; i < edgeSize; i++) {
             st = new StringTokenizer(br.readLine());
-
             int firstIndex = Integer.parseInt(st.nextToken());
             int secondIndex = Integer.parseInt(st.nextToken());
 
-            list[firstIndex].add(secondIndex);
-            list[secondIndex].add(firstIndex);
-        }
-
-        for (int i = 0; i < list.length; i++) {
-            Collections.sort(list[i]);
+            nodeList[firstIndex].add(secondIndex);
+            nodeList[secondIndex].add(firstIndex);
         }
 
         BFS(startIndex);
 
-        for (int i = 1; i < result.length; i++) {
+        // O(nodeSize)
+        for (int i = 1; i <= nodeSize; i++) {
             System.out.println(result[i]);
         }
     }
 
     private static void BFS(int startIndex) {
+
         Queue<Integer> queue = new LinkedList<>();
-
         queue.offer(startIndex);
-        BFSVisited[startIndex] = true;
 
+        // O(edgeSize)
         while (!queue.isEmpty()) {
             int index = queue.poll();
-            result[index] = count++;
+            if (visited[index]) continue;
 
-            for (int newIndex : list[index]) {
-                if (!BFSVisited[newIndex]) {
-                    queue.offer(newIndex);
-                    BFSVisited[newIndex] = true;
-                }
+            visited[index] = true;
+            result[index] = resultIndex++;
+
+            while (!nodeList[index].isEmpty()) {
+                queue.offer(nodeList[index].poll());
             }
+
+//            for (int i = 0; i < nodeList[index].size(); i++) {
+//                queue.offer(nodeList[index].poll());
+//            }
+
         }
     }
 }
