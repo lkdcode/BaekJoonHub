@@ -1,68 +1,42 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
 
-        String[] start = new String[size];
-        String[] end = new String[size];
+        int n = Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine());
 
-        // 1 3 5 7
-        int startIndex = 0;
-        int endIndex = size - 1;
-        for (int i = 0; i < size * 2; i += 2) {
-            String input = "";
-            String space = " ";
+        int startIndex = 0; // 0
+        int endIndex = (2 * n - 1) - 1; // 8
 
-            for (int k = 0; k <= i; k++) {
-                input += "*";
+        String[] arr = new String[2 * n - 1];
+        Arrays.fill(arr, "");
+
+        for (int i = 1; i < n; i++) {
+
+            for (int j = n - i; j > 0; j--) {
+                arr[startIndex] += " "; // 0
+                arr[endIndex] += " "; // 8
             }
 
-            start[startIndex++] = input;
-            end[endIndex--] = input;
-        }
-
-        end[0] = "";
-
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < size; i++) {
-
-            for (int j = size - 1; j > i; j--) {
-                result.append(" ");
+            for (int j = 0; j < 2 * i - 1; j++) {
+                arr[startIndex] += "*"; // 0
+                arr[endIndex] += "*"; // 8
             }
-            result.append(start[i] + "\n");
+
+            startIndex++; // 0 > 1 ...>  4
+            endIndex--; // 8 > 7   ...>  5
         }
 
-
-        for (int i = 0; i < size; i++) {
-            if (end[i] != "") {
-                for (int j = i; j > 0; j--) {
-                    result.append(" ");
-                }
-                result.append(end[i] + "\n");
-            }
+        for (int i = 0; i < 2 * n - 1; i++) {
+            arr[n - 1] += "*";
         }
 
-        System.out.println(result);
-
+        for (String s : arr) {
+            System.out.println(s);
+        }
 
     }
-
 }
-//
-//    *
-//   ***
-//  *****
-// *******
-//*********
-// *******
-//  *****
-//   ***
-//    *
