@@ -1,87 +1,89 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static boolean[] DFSVisited;
-    static boolean[] BFSVisited;
-    static String DFSResult = "";
-    static String BFSResult = "";
-    static List<Integer>[] list;
-
+    private static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+    private static final StringBuilder result = new StringBuilder();
+    private static List<Integer>[] list;
+    private static boolean[] DFSVisited;
+    private static boolean[] BFSVisited;
 
     public static void main(String[] args) throws IOException {
-        String[] input = br.readLine().split(" ");
 
-        int node = Integer.parseInt(input[0]);
-        int edge = Integer.parseInt(input[1]);
+        StringTokenizer st = new StringTokenizer(BR.readLine());
 
-        int startIndex = Integer.parseInt(input[2]);
+        int N = Integer.parseInt(st.nextToken()) + 1;
+        int M = Integer.parseInt(st.nextToken());
+        int startIndex = Integer.parseInt(st.nextToken());
 
-        DFSVisited = new boolean[node + 1];
-        BFSVisited = new boolean[node + 1];
-        list = new ArrayList[node + 1];
+        list = new ArrayList[N];
+        DFSVisited = new boolean[N];
+        BFSVisited = new boolean[N];
 
-        for (int i = 0; i <= node; i++) {
+        for (int i = 0; i < N; i++) {
             list[i] = new ArrayList<>();
         }
 
-        for (int i = 0; i < edge; i++) {
-            input = br.readLine().split(" ");
-            int index = Integer.parseInt(input[0]);
-            int linkIndex = Integer.parseInt(input[1]);
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(BR.readLine());
+            int firstIndex = Integer.parseInt(st.nextToken());
+            int secondIndex = Integer.parseInt(st.nextToken());
 
-            list[index].add(linkIndex);
-            list[linkIndex].add(index);
-            Collections.sort(list[index]);
-            Collections.sort(list[linkIndex]);
+            list[firstIndex].add(secondIndex);
+            list[secondIndex].add(firstIndex);
+
+            Collections.sort(list[firstIndex]);
+            Collections.sort(list[secondIndex]);
         }
 
-
         DFS(startIndex);
-        System.out.println(DFSResult);
-
+        result.append(System.lineSeparator());
         BFS(startIndex);
-        System.out.println(BFSResult);
 
+        System.out.println(result);
     }
 
-    static void DFS(int startIndex) {
-
+    private static void DFS(int startIndex) {
         if (DFSVisited[startIndex]) {
             return;
         }
 
-        DFSResult += startIndex + " ";
         DFSVisited[startIndex] = true;
+        result.append(startIndex)
+                .append(" ");
 
-        for (int nextIndex : list[startIndex]) {
-            if (!DFSVisited[nextIndex]) {
-                DFS(nextIndex);
+        for (int newIndex : list[startIndex]) {
+            if (!DFSVisited[newIndex]) {
+                DFS(newIndex);
             }
         }
 
     }
 
-    static void BFS(int startIndex) {
-        BFSVisited[startIndex] = true;
-        Queue<Integer> BFSQueue = new LinkedList<>();
-        BFSQueue.offer(startIndex);
+    private static void BFS(int startIndex) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(startIndex);
 
-        while (!BFSQueue.isEmpty()) {
-            int newIndex = BFSQueue.poll();
-            BFSResult += newIndex + " ";
+        while (!queue.isEmpty()) {
+            int index = queue.poll();
 
-            for (int secondIndex : list[newIndex]) {
-                if(!BFSVisited[secondIndex]){
-                    BFSQueue.add(secondIndex);
-                    BFSVisited[secondIndex] = true;
+            if (!BFSVisited[index]) {
+                result.append(index)
+                        .append(" ");
+                BFSVisited[index] = true;
+            }
+
+
+            for (int newIndex : list[index]) {
+                if (!BFSVisited[newIndex]) {
+                    queue.add(newIndex);
                 }
             }
-        }
 
+        }
 
     }
 
