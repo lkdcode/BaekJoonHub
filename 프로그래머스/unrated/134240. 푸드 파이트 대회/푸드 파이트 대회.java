@@ -4,6 +4,8 @@ class Solution {
     public String solution(int[] food) {
         String answer = "";
         
+        StringBuilder sb = new StringBuilder();
+        
         int caseSize = food.length;
         
         Map<Integer, Integer> map = new HashMap<>();
@@ -17,21 +19,22 @@ class Solution {
             int size = map.get(i);
             
             for (int j = 0; j < size; j++) {
-                answer += i;
+                sb.append(i);
             }
         }
         
-        answer += 0;
+        // answer += 0;
+        sb.append(0);
         
         for (int i = caseSize - 1; i > 0; i--) {
             int size = map.get(i);
             
             for (int j = 0; j < size; j++) {
-                answer += i;
+                sb.append(i);
             }
             
         }
         
-        return answer;
+        return sb.toString();
     }
 }
