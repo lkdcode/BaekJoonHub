@@ -4,23 +4,13 @@ class Solution {
     public int solution(int k, int m, int[] score) {
         int answer = 0;
         
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        Arrays.sort(score);
         
-        for (int n : score) {
-            pq.add(n);
-        }
+        // 3 3 2 2 1 1 1
+        // 6 5 4 3 2 1 0
         
-        int size = pq.size();
-        
-        while ((size -= m) >= 0) {
-            
-            for (int i = 1; i < m; i++) {
-                pq.poll();
-            }
-            
-            int nq = pq.poll();
-            
-            answer += nq * m;
+        for (int i = score.length - m; i >= 0; i -= m) {
+            answer += score[i] * m;
         }
         
         return answer;
