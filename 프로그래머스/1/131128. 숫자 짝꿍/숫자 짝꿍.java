@@ -7,8 +7,12 @@ class Solution {
         int[] xList = new int[10];
         int[] yList = new int[10];
         
-        for (int i = 0; i < X.length(); i++) {
-            char check = X.charAt(i);
+        // for (int i = 0; i < X.length(); i++) {
+        //     char check = X.charAt(i);
+        //     xList[check - 48]++;
+        // }
+        
+        for (char check : X.toCharArray()) {
             xList[check - 48]++;
         }
         
