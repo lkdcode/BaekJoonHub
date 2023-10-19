@@ -5,7 +5,7 @@ class Solution {
         int answer = 0;
         
         int[] student = new int[n + 1];
-        
+            
         for (int i = 0; i <= n; i++) {
             student[i] = 1;
         }
@@ -19,7 +19,7 @@ class Solution {
             student[lost[i]]--;
         }
         
-        System.out.println(Arrays.toString(student) + " < < < ");
+        // System.out.println(Arrays.toString(student) + " < < < ");
         
         for (int i = 1; i < student.length; i++) {
             if (student[i] == 2) {
@@ -38,7 +38,7 @@ class Solution {
             }
         }
         
-        System.out.println(Arrays.toString(student) + " < < < ");
+        // System.out.println(Arrays.toString(student) + " < < < ");
         
         for (int i = 1; i <= n; i++) {
             if (student[i] >= 1) answer++;
