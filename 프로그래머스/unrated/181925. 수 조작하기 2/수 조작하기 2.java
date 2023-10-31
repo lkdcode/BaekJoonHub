@@ -1,28 +1,32 @@
+import java.util.*;
+
 class Solution {
     public String solution(int[] numLog) {
-        String answer = "";
-        // int number = numLog[0];
+        StringBuilder answer = new StringBuilder();
         
         for (int i = 1; i < numLog.length; i++) {
             int number = numLog[i - 1];
             if (numLog[i] + 1 == number) {
-                answer += "s";
+                answer.append("s");
+                continue;
             }
             
             if (numLog[i] - 1 == number) {
-                answer += "w";
+                answer.append("w");
+                continue;
             }
             
             if (numLog[i] + 10 == number) {
-                answer += "a";
+                answer.append("a");
+                continue;
             }
             
             if (numLog[i] - 10 == number) {
-                answer += "d";
+                answer.append("d");
             }
             
         }
         
-        return answer;
+        return answer.toString();
     }
 }
