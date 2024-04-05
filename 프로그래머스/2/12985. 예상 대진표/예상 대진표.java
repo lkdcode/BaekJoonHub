@@ -1,17 +1,11 @@
 class Solution {
    public int solution(int n, int a, int b) {
-
         int count = 1;
         
         while (true) {
-            if (a % 2 == 0 && b + 1 == a) {
-                
-                break;
-            }
-
-            if (b % 2 == 0 && a + 1 == b) {
-                
-                break;
+            if ((a % 2 == 0 && b + 1 == a)
+                ||(b % 2 == 0 && a + 1 == b)) {
+                return count;
             }
 
             count++;
@@ -28,6 +22,5 @@ class Solution {
                 b = b / 2 + 1;
             }
         }
-        return count;
     }
 }
