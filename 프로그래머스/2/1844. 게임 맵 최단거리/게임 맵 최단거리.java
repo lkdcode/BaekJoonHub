@@ -22,17 +22,17 @@ class Solution {
         return maps[maxXSize - 1][maxYSize - 1] > 1 ? maps[maxXSize - 1][maxYSize - 1] : -1;
     }
     
-    private static void bfs(final int[][] maps) {
+     private static void bfs(final int[][] maps) {
         final Queue<int[]> queue = new LinkedList<>();
         final int[] startPosition = {0, 0};
         queue.add(startPosition);
-
+        isVisitedByBfs[0][0] = true;
         while (!queue.isEmpty() && maps[maxXSize - 1][maxYSize - 1] <= 1) {
             final int[] position = queue.poll();
             final int xIndex = position[0];
             final int yIndex = position[1];
 
-            isVisitedByBfs[xIndex][yIndex] = true;
+//            isVisitedByBfs[xIndex][yIndex] = true;
 
             for (int i = 0; i < DX.length; i++) {
                 final int newXIndex = DX[i] + xIndex;
