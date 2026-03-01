@@ -21,7 +21,7 @@ fun main() {
         edgeList.add(Edge(from, to, cost))
     }
 
-    for (i in 0 until m) {
+    for (i in 0 until n - 1) {
         for (edge in edgeList) {
             val from = edge.from
             val to = edge.to
