@@ -29,7 +29,9 @@ fun main() {
         )
     }
 
-    bellmanFord@ for (i in 0 until n * 2) {
+    bellmanFord@ for (i in 0 until n) {
+        var isUpdated = false
+
         for (edge in edges) {
             val from = edge.from
             val to = edge.to
@@ -47,6 +49,7 @@ fun main() {
             }
 
             if (costList[to] > nextCost) {
+                isUpdated = true
                 costList[to] = nextCost
                 parent[to] = from
 
@@ -57,6 +60,7 @@ fun main() {
                 }
             }
         }
+        if (!isUpdated) break
     }
 
     if (hasNegativeCycle) {
