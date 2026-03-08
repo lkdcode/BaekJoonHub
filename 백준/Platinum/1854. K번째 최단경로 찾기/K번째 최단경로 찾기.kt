@@ -32,8 +32,6 @@ fun main() {
     dist[1].add(0)
     queue.add(Node(1, 0))
 
-    val visited = Array(n + 1) { HashSet<Int>() }
-
     while (queue.isNotEmpty()) {
         val (index, cost) = queue.poll()
 
@@ -41,18 +39,11 @@ fun main() {
             val (nextIndex, nextCost) = city
             val sum = nextCost + cost
 
-//            if (dist[nextIndex].size < k && !dist[nextIndex].contains(sum)) {
-//            if (dist[nextIndex].size < k && !visited[nextIndex].contains(sum)) {
             if (dist[nextIndex].size < k) {
-//                visited[nextIndex].add(sum)
                 dist[nextIndex].add(sum)
                 queue.add(Node(nextIndex, sum))
-            }
-//            if (nextLast != null && nextLast > sum && !dist[nextIndex].contains(sum)) {
-//            if (nextLast != null && nextLast > sum && !visited[nextIndex].contains(sum)) {
-            else if (dist[nextIndex].peek() > sum) {
+            } else if (dist[nextIndex].peek() > sum) {
                 dist[nextIndex].poll()
-//                visited[nextIndex].add(sum)
                 dist[nextIndex].add(sum)
                 queue.add(Node(nextIndex, sum))
             }
