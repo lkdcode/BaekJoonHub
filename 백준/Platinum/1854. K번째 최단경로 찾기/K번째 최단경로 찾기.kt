@@ -50,14 +50,18 @@ fun main() {
         }
     }
 
+    val result = StringBuilder()
+
     for (i in 1..n) {
         if (dist[i].size < k) {
-            println("-1")
+            result.append("-1\n")
             continue
         }
 
-        println(dist[i].toList().reversed()[k - 1])
+        result.append("${dist[i].peek()}\n")
     }
+    
+    print(result)
 }
 
 data class Node(
