@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     public static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
@@ -53,6 +50,8 @@ public class Main {
         PriorityQueue<QueueNode> pq = new PriorityQueue<>();
 
         long[][] costList = new long[2501][2501];
+        int[] minGasHistory = new int[2501];
+        Arrays.fill(minGasHistory, Integer.MAX_VALUE);
 
         for (int i = 0; i < 2501; i++) {
             for (int j = 0; j < 2501; j++) {
@@ -64,9 +63,13 @@ public class Main {
 
         while (!pq.isEmpty()) {
             QueueNode qn = pq.poll();
+
             int currentIndex = qn.index;
             long currentTotalCost = qn.totalCost;
             int currentMinGas = qn.minGas;
+
+            if (minGasHistory[currentIndex] < currentMinGas) continue;
+            minGasHistory[currentIndex] = currentMinGas;
 
             if (costList[currentIndex][currentMinGas] < currentTotalCost) continue;
             costList[currentIndex][currentMinGas] = currentTotalCost;
